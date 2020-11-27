@@ -1,8 +1,7 @@
-
-function draw_map(YEAR){
+function draw_map(container, data){
 
     //Width and height of map
-    var width = 960;
+    var width = 800;
     var height = 500;
 
     // D3 Projection
@@ -16,88 +15,81 @@ function draw_map(YEAR){
     var legendText = ["Democratic","Republican"];
 
     //Create SVG element and append map to the SVG
-    var svg = d3.select("#mapp").append("svg").attr("width", width).attr("height", height);
+    var svg = d3.select(container).append("svg").attr("width", width).attr("height", height);
 
-    var div = d3.select("#mapp").append("div").attr("class", "tooltip").style("opacity", 0);
+    var div = d3.select(container).append("div").attr("class", "tooltip").style("opacity", 0);
 
-    // Load in my states data!
-    d3.json("../static/data/vizdata/vizbaby.json", function(data) {
-        color.domain([0,1]);
+    color.domain([0,1]);
 
-        var data = data[YEAR]
+    // Load GeoJSON data and merge with states data
+    d3.json("../static/geo/us-states.geojson", function(json) {
 
-        // Load GeoJSON data and merge with states data
-        d3.json("../static/geo/us-states.geojson", function(json) {
+        // Loop through each state data value in the .csv file
+        for (var i = 0; i < data.length; i++) {
 
-            // Loop through each state data value in the .csv file
-            for (var i = 0; i < data.length; i++) {
+            // Grab State Name
+            var dataState = data[i].state;
 
-                // Grab State Name
-                var dataState = data[i].state;
+            // Grab data value
+            var dataValue = data[i].state_majority;
 
-                // Grab data value
-                var dataValue = data[i].state_majority;
+            // Find the corresponding state inside the GeoJSON
+            for (var j = 0; j < json.features.length; j++)  {
+                var jsonState = json.features[j].properties.name;
 
-                // Find the corresponding state inside the GeoJSON
-                for (var j = 0; j < json.features.length; j++)  {
-                    var jsonState = json.features[j].properties.name;
+                if (dataState == jsonState) {
 
-                    if (dataState == jsonState) {
+                    // Copy the data value into the JSON
+                    json.features[j].properties.state_majority = dataValue;
 
-                        // Copy the data value into the JSON
-                        json.features[j].properties.state_majority = dataValue;
-
-                    // Stop looking through the JSON
-                    break;
-                    }
+                // Stop looking through the JSON
+                break;
                 }
             }
+        }
 
-            // Bind the data to the SVG and create one path per GeoJSON feature
-            svg.selectAll("path")
-                .data(json.features)
-                .enter()
-                .append("path")
-                .attr("d", path)
-                .style("stroke", "#fff")
-                .style("stroke-width", "1")
-                .style("fill", function(d) {
-                    var value = d.properties.state_majority;
-                    if (value == "Republican") {
-                        var val = 0
-                    }else{
-                        var val = 1
-                    }
-                    return color(val)
-            });
+        // Bind the data to the SVG and create one path per GeoJSON feature
+        svg.selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .style("stroke", "#fff")
+            .style("stroke-width", "1")
+            .style("fill", function(d) {
+                var value = d.properties.state_majority;
+                if (value == "Republican") {
+                    var val = 0
+                }else{
+                    var val = 1
+                }
+                return color(val)
+        });
 
 
-        // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
-        var legend = d3.select("#mapp").append("svg")
-                        .attr("class", "legend")
-                        .attr("width", 140)
-                        .attr("height", 200)
-                        .selectAll("g")
-                        .data(color.domain().slice().reverse())
-                        .enter()
-                        .append("g")
-                        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+    // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
+    var legend = d3.select(container).append("svg")
+                    .attr("class", "legend")
+                    .attr("width", 140)
+                    .attr("height", 200)
+                    .selectAll("g")
+                    .data(color.domain().slice().reverse())
+                    .enter()
+                    .append("g")
+                    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-            legend.append("rect")
-                  .attr("width", 18)
-                  .attr("height", 18)
-                  .style("fill", color);
+        legend.append("rect")
+              .attr("width", 18)
+              .attr("height", 18)
+              .style("fill", color);
 
-            legend.append("text")
-                  .data(legendText)
-                  .attr("x", 24)
-                  .attr("y", 9)
-                  .attr("dy", ".35em")
-                  .text(function(d) { return d; });
-            });
+        legend.append("text")
+              .data(legendText)
+              .attr("x", 24)
+              .attr("y", 9)
+              .attr("dy", ".35em")
+              .text(function(d) { return d; });
+        });
 
-    });
 
 }
-
-draw_map("1900")

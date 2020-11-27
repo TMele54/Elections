@@ -20,11 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ab16ebd-cab5-4737-b07d-21fd1e016608" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/js/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/elections.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/data/vizData/vizbaby.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/data/vizData/vizbaby.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/scatter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +36,8 @@
       <list>
         <option value="Flask Main" />
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -106,7 +106,7 @@
       <workItem from="1605169863621" duration="575000" />
       <workItem from="1605170474109" duration="292000" />
       <workItem from="1605171867399" duration="21000" />
-      <workItem from="1606409010825" duration="8312000" />
+      <workItem from="1606409010825" duration="17507000" />
     </task>
     <servers />
   </component>
