@@ -7,6 +7,10 @@ app = Flask(__name__)
 def hello_world():
     return render_template('map.html')
 
+@app.route('/scatter')
+def scatter():
+    return render_template('scatter.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

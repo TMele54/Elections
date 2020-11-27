@@ -13720,7 +13720,7 @@
             "points": "5",
             "president_name": "Barack Obama",
             "president_party": "Democrat",
-            "state": "Nebraska\n        (see Notes)",
+            "state": "Nebraska",
             "state_majority": "Democrat",
             "year": "2008"
         },
@@ -14584,7 +14584,7 @@
             "points": "4",
             "president_name": "Donald Trump",
             "president_party": "Republican",
-            "state": "Hawaii*",
+            "state": "Hawaii",
             "state_majority": "Democrat",
             "year": "2016"
         },
@@ -14664,7 +14664,7 @@
             "points": "4",
             "president_name": "Donald Trump",
             "president_party": "Republican",
-            "state": "Maine**",
+            "state": "Maine",
             "state_majority": "Republican",
             "year": "2016"
         },
@@ -14904,7 +14904,7 @@
             "points": "38",
             "president_name": "Donald Trump",
             "president_party": "Republican",
-            "state": "Texas***",
+            "state": "Texas",
             "state_majority": "Republican",
             "year": "2016"
         },
@@ -14944,7 +14944,7 @@
             "points": "12",
             "president_name": "Donald Trump",
             "president_party": "Republican",
-            "state": "Washington****",
+            "state": "Washington",
             "state_majority": "Democrat",
             "year": "2016"
         },
